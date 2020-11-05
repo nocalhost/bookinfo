@@ -1,0 +1,7 @@
+items:
+  - path: ./print-num-job-01.yaml
+  - path: ./print-num-job-02.yaml
+    weight: "10"
+  - path: ./print-num-job-03.yaml
+    weight: "-5"
+
