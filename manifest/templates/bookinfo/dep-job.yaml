@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dep-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: print-num
+        image: codingcorp-docker.pkg.coding.net/nocalhost/public/sleep-and-print-num:0.1
+        command: ["go", "run", "print-num.go", "60"]
+      restartPolicy: Never
+  backoffLimit: 4
