@@ -1,0 +1,22 @@
+preInstall:
+  - path: manifest/pre-install/print-num-job-01.yaml
+  - path: manifest/pre-install/print-num-job-02.yaml
+    weight: "10"  # 权重，越小优先安装
+  - path: manifest/pre-install/print-num-job-03.yaml
+    weight: "-5"
+
+devs:
+  - name: productpage-v1
+    type: deployment
+    gitUrl: https://github.com/nocalhost/bookinfo-productpage
+    devEnv: python  # java|go|node|php
+    sync: 
+      - .:/home  # 本地 . 目录同步到远程 /home 目录（脚本语言推荐），注意需要使用 empty dir 挂载到业务容器和工作容器对应的目录下，实现容器间共享存储。
+    # - ./build:/home  # 本地 build 目录同步到远程 home 目录，例如大型 Java 项目不推荐同步源码，应本地 build 之后，同步 jar 包即可
+    igonre: 
+      - tests # 忽略本地 /test 目录不同步
+      - .github
+    devPort:
+      - 12345:22  # 打通开发容器的 ssh 端口用于同步文件，该选项可以考虑内置，随机选择本地端口打通开发容器的 ssh，对用户透明。
+      - 5005:5005  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
+    command: ["kill `ps -ef|grep -i gradlew| grep -v grep| awk '{print $2}'`", "gradlew", "bootrun"]  # 文件同步完成后触发的命令，用于自动执行
