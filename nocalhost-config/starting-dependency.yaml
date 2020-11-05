@@ -12,10 +12,10 @@ data:
         - "dep-job"
         pods:
         - "productpage"
-        - name: productpage
+      - name: productpage
         type: deployment
         pods:
-        - "ratings"
+        - "details"
       - name: reviews
         type: deployment
         pods:
