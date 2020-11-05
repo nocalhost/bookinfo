@@ -13,7 +13,7 @@ devs:
     sync: 
       - .:/home  # 本地 . 目录同步到远程 /home 目录（脚本语言推荐），注意需要使用 empty dir 挂载到业务容器和工作容器对应的目录下，实现容器间共享存储。
     # - ./build:/home  # 本地 build 目录同步到远程 home 目录，例如大型 Java 项目不推荐同步源码，应本地 build 之后，同步 jar 包即可
-    igonre: 
+    ignore:
       - tests # 忽略本地 /test 目录不同步
       - .github
     devPort:
