@@ -1,1 +1,1 @@
-# bookinfo
+# develop bookinfo with nocalhost
