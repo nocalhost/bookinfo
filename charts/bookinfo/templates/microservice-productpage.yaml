@@ -39,6 +39,6 @@ spec:
       containers:
       - name: productpage
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/productpage
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 9080

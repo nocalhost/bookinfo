@@ -38,6 +38,9 @@ spec:
       containers:
       - name: reviews
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/reviews
-        imagePullPolicy: IfNotPresent
+        env:
+        - name: server.port
+          value: "9080"
+        imagePullPolicy: Always
         ports:
         - containerPort: 9080
