@@ -6,17 +6,17 @@ metadata:
 data:
   nocalhost: |
     dependency:
-      - name: ratings
+      - name: ratings-v1
         type: deployment
         jobs:
         - "dep-job"
         pods:
         - "productpage"
-      - name: productpage
+      - name: productpage-v1
         type: deployment
-        pods:
-        - "details"
-      - name: reviews
+        jobs:
+        - "dep-job"
+      - name: reviews-v1
         type: deployment
         pods:
         - "productpage"
