@@ -13,11 +13,6 @@ spec:
   selector:
     app: ratings
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-ratings
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,7 +29,6 @@ spec:
       labels:
         app: ratings
     spec:
-      serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/ratings

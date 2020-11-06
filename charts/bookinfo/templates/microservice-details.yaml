@@ -13,11 +13,6 @@ spec:
   selector:
     app: details
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-details
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,7 +29,6 @@ spec:
       labels:
         app: details
     spec:
-      serviceAccountName: bookinfo-details
       containers:
       - name: details
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details

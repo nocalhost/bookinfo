@@ -14,11 +14,6 @@ spec:
     app: productpage
   type: {{.Values.ServiceType}}
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-productpage
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,7 +30,6 @@ spec:
       labels:
         app: productpage
     spec:
-      serviceAccountName: bookinfo-productpage
       containers:
       - name: productpage
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/productpage
