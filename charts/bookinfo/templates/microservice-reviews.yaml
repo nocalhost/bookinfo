@@ -38,3 +38,10 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
+        
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9080
+          failureThreshold: 1
+          periodSeconds: 10
