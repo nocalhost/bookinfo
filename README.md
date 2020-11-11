@@ -30,7 +30,7 @@ We commit some changes to demonstrate nocalhost better. Here is the items:
 
 `.nocalhost` is a directory in the root of repository which stores the configurations of nocalhost. In this case, the file `config.yaml` :
 
-```
+```yaml
 # preInstalls indict the jobs must be done before application installation.
 preInstalls:
   - path: manifest/pre-install/print-num-job-01.yaml
@@ -54,32 +54,31 @@ svcConfigs:
     type: deployment
     # the git clone url of this microservice(used by IDE plugin)
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
-    # TODO
     devEnv: python  # java|go|node|php
     # The container image for development of this microservice(Commonly, the image contains all of the sdks and debug tools of this microservice)
-    devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2  # 可选参数：自定义开发容器
+    devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2
     # Specify which directories to sync from IDE workspace to remote container
     sync: 
-    - .:/home  # 本地 . 目录同步到远程 /home 目录（脚本语言推荐），注意需要使用 empty dir 挂载到业务容器和工作容器对应的目录下，实现容器间共享存储。
-    # - ./build:/home  # 本地 build 目录同步到远程 home 目录，例如大型 Java 项目不推荐同步源码，应本地 build 之后，同步 jar 包即可
+    - .:/home
+    # - ./build:/home
     # Specify which directories to ignore sync
     ignore:
-      - tests # 忽略本地 /test 目录不同步
+      - tests
       - .github
     # Specify which ports to forward to local
     devPort:
-    - 12345:22  # 打通开发容器的 ssh 端口用于同步文件，该选项可以考虑内置，随机选择本地端口打通开发容器的 ssh，对用户透明。
-    - 5005:5005  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
+    - 12345:22
+    - 5005:5005
     
     # Specify which command to execute when enabled hotload development
     command: ["kill `ps -ef|grep -i gradlew| grep -v grep| awk '{print $2}'`", "gradlew", "bootrun"]
     
     # Specify which jobs to wait before this microservice starts
-    jobs:  # 依赖的 job 定义
+    jobs:
     - "dep-job"
     
     # Specify which pods to wait for ready before this microservice starts
-    pods:  # 依赖的 pod 定义
+    pods:
     - "productpage"
 ```
 
