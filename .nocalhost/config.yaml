@@ -25,7 +25,7 @@ svcConfigs:
       - tests # 忽略本地 /test 目录不同步
       - .github
     devPort:
-    - 12345:22  # 打通开发容器的 ssh 端口用于同步文件，该选项可以考虑内置，随机选择本地端口打通开发容器的 ssh，对用户透明。
+    - 12346:22
     - 5005:5005  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
     command: ["kill `ps -ef|grep -i gradlew| grep -v grep| awk '{print $2}'`", "gradlew", "bootrun"]
     jobs:  # 依赖的 job 定义
