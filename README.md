@@ -84,8 +84,8 @@ svcConfigs:
 
 # How to start?
 
-(https://nocalhost.dev/quickstart)[https://nocalhost.dev/quickstart]
+https://nocalhost.dev/quickstart
 
 # Contribute
-(https://nocalhost.dev/contribute)[https://nocalhost.dev/contribute]
+https://nocalhost.dev/contribute
 
