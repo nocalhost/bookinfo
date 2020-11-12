@@ -25,7 +25,7 @@ svcConfigs:
     ignore:
       - tests # 忽略本地 /test 目录不同步
       - .github
-    ssh:
+    sshPort:
       localPort: 12347
       sshPort: 22
     devPort:
