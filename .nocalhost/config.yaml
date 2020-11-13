@@ -20,8 +20,8 @@ svcConfigs:
     workDir: /home/nocalhost-dev   # sidecar 和业务容器的公共目录，kubectl exec 进去就是家目录 k8s containers.workingDir
     localWorkDir: /home/coding   # 插件自动拉代码并保存的本地工作空间
     sync:  # 用户配置的同步目录
-    - /home/coding   # 本地工作目录同步到远程 workDir 目录（脚本语言推荐），注意需要使用 empty dir 挂载到业务容器和工作容器对应的目录下，实现容器间共享存储。
-    - /home/coding/build   # 本地 build 目录同步到远程 workDir 目录，例如大型 Java 项目不推荐同步源码，应本地 build 之后，同步 jar 包即可
+    - /opt/coding   # 本地工作目录同步到远程 workDir 目录（脚本语言推荐），注意需要使用 empty dir 挂载到业务容器和工作容器对应的目录下，实现容器间共享存储。
+    - ~/coding/build   # 本地 build 目录同步到远程 workDir 目录，例如大型 Java 项目不推荐同步源码，应本地 build 之后，同步 jar 包即可
     ignore:
       - tests # 忽略本地 /test 目录不同步
       - .github
