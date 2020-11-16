@@ -32,7 +32,44 @@ svcConfigs:
     - 12346:22
     - 5005:5005  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
     command: ["kill `ps -ef|grep -i gradlew| grep -v grep| awk '{print $2}'`", "gradlew", "bootrun"]
-    jobs:  # 依赖的 job 定义
+  - name: ratings
+    type: deployment
+    gitUrl: https://github.com/nocalhost/bookinfo-productpage
+    devLang: ruby
+    devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2  
+    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:v1
+    workDir: /home/nocalhost-dev
+    localWorkDir: /home/coding
+    sync:
+    - /opt/coding
+    - ~/coding/build
+    jobs:
     - "dep-job"
-    pods:  # 依赖的 pod 定义
+    pods:
+    - "productpage"
+  - name: productpage
+    type: deployment
+    gitUrl: https://github.com/nocalhost/bookinfo-productpage
+    devLang: ruby
+    devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2  
+    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:v1
+    workDir: /home/nocalhost-dev
+    localWorkDir: /home/coding
+    sync:
+    - /opt/coding
+    - ~/coding/build
+    jobs:
+    - "dep-job"
+  - name: reviews
+    type: deployment
+    gitUrl: https://github.com/nocalhost/bookinfo-productpage
+    devLang: ruby
+    devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2  
+    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:v1
+    workDir: /home/nocalhost-dev
+    localWorkDir: /home/coding
+    sync:
+    - /opt/coding
+    - ~/coding/build
+    pods:
     - "productpage"
