@@ -11,7 +11,7 @@ appConfig:
   resourcePath: manifest/templates
 
 svcConfigs:
-  - name: details-v1
+  - name: details
     type: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
     devLang: ruby  # java|go|node|php
