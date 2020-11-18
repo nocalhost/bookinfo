@@ -37,7 +37,7 @@ svcConfigs:
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
     devLang: ruby
     devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2  
-    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:v1
+    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:latest
     workDir: /home/nocalhost-dev
     localWorkDir: /home/coding
     sync:
@@ -52,7 +52,7 @@ svcConfigs:
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
     devLang: ruby
     devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2  
-    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:v1
+    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:latest
     workDir: /home/nocalhost-dev
     localWorkDir: /home/coding
     sync:
@@ -65,7 +65,7 @@ svcConfigs:
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
     devLang: ruby
     devImage: codingcorp-docker.pkg.coding.net/nocalhost/public/share-container-ruby:v2  
-    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:v1
+    sideCarImage: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-sidecar:latest
     workDir: /home/nocalhost-dev
     localWorkDir: /home/coding
     sync:
