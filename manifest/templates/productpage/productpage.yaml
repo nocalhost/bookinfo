@@ -27,16 +27,19 @@ metadata:
   name: productpage
   labels:
     app: productpage
+    app.kubernetes.io/name: productpage
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
+      app.kubernetes.io/name: productpage
       app: productpage
       version: v1
   template:
     metadata:
       labels:
+        app.kubernetes.io/name: productpage
         app: productpage
         version: v1
     spec:

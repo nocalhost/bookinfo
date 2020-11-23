@@ -47,6 +47,7 @@ svcConfigs:
     - "dep-job"
     pods:
     - "productpage"
+    - "app.kubernetes.io/name=productpage"
   - name: productpage
     type: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
