@@ -27,8 +27,6 @@ svcConfigs:
     sshPort:
       localPort: 12347
       sshPort: 22
-    devPort:
-    - :9080  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
     command: ["kill `ps -ef|grep -i gradlew| grep -v grep| awk '{print $2}'`", "gradlew", "bootrun"]
   - name: ratings
     type: deployment
@@ -55,6 +53,8 @@ svcConfigs:
     localWorkDir: /home/coding
     sync:
     - ./
+    devPort:
+    - :9080  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
     jobs:
     - "dep-job"
   - name: reviews
