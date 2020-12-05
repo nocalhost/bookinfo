@@ -54,7 +54,7 @@ svcConfigs:
     sync:
     - ./
     devPort:
-    - :9080  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
+    - 9080:9080  # 打通应用的调试端口，使用 port-forward 一致的格式 [locaPort:remotePort]
     jobs:
     - "dep-job"
   - name: reviews
