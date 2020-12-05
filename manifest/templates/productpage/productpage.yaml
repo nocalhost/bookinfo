@@ -6,11 +6,9 @@ metadata:
     app: productpage
     service: productpage
 spec:
-  type: NodePort
   ports:
   - port: 9080
     name: http
-    nodePort: 30001
   selector:
     app: productpage
 ---
