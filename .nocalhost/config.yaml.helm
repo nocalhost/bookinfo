@@ -2,10 +2,10 @@ name: bookinfo
 manifestType: helmGit
 resourcePath: ["charts/bookinfo"]
 
-preInstalls:
+onPreInstall:
   - path: manifest/templates/pre-install/print-num-job-01.yaml
   - path: manifest/templates/pre-install/print-num-job-02.yaml
-    weight: "10"  # 权重，越小优先安装
+    weight: "10"
   - path: manifest/templates/pre-install/print-num-job-03.yaml
     weight: "-5"
 
