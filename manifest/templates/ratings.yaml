@@ -12,31 +12,21 @@ spec:
   selector:
     app: ratings
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-ratings
-  labels:
-    account: ratings
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ratings
   labels:
     app: ratings
-    version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: ratings
-      version: v1
   template:
     metadata:
       labels:
         app: ratings
-        version: v1
     spec:
       containers:
       - name: ratings
