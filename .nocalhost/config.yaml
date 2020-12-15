@@ -17,7 +17,7 @@ services:
     syncDirs:
     - ./
     devPorts:
-    - :9080
+    - 39080:9080
     dependJobsLabelSelector:
     - "dep-job"
   - name: details
