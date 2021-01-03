@@ -15,42 +15,50 @@ services:
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
     workDir: /root/nocalhost-dev
     persistentVolumeDirs: 
-      - path: /root
+    - path: /root
     devContainerShell: ""
     devPorts:
-      - 39080:9080
+    - 39080:9080
     dependJobsLabelSelector:
-      - dep-job
-    syncedPattern:
-      - .
-    ignoredPattern:
-      - .git
+    - dep-job
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
 
   - name: details
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-details.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
-    syncDirs:
-    - ./
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
     workDir: /home/nocalhost-dev
+    
   - name: ratings
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-ratings.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
     workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
     dependJobsLabelSelector:
     - "dep-job"
     dependPodsLabelSelector:
     - "productpage"
     - "app.kubernetes.io/name=productpage"
+    
   - name: reviews
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-reviews.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
     workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
     dependPodsLabelSelector:
     - "productpage"
