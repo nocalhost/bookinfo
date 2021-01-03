@@ -2,50 +2,54 @@ name: bookinfo
 manifestType: helmGit
 resourcePath: ["charts/bookinfo"]
 
-onPreInstall:
-  - path: manifest/templates/pre-install/print-num-job-01.yaml
-  - path: manifest/templates/pre-install/print-num-job-02.yaml
-    weight: "10"
-  - path: manifest/templates/pre-install/print-num-job-03.yaml
-    weight: "-5"
-
 services:
   - name: productpage
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
     workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
     devPorts:
     - :9080
     dependJobsLabelSelector:
-    - "dep-job"
+    - "job-name=dep-job"
+    
   - name: details
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-details.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
-    syncDirs:
-    - ./
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
     workDir: /home/nocalhost-dev
+    
   - name: ratings
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-ratings.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
     workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
     dependJobsLabelSelector:
-    - "dep-job"
+    - "job-name=dep-job"
     dependPodsLabelSelector:
     - "productpage"
     - "app.kubernetes.io/name=productpage"
+    
   - name: reviews
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-reviews.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
     workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
+    syncFilePattern:
+    - .
+    ignoreFilePattern:
+    - .git
     dependPodsLabelSelector:
     - "productpage"
