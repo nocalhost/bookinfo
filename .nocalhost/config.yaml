@@ -20,7 +20,7 @@ services:
     devPorts:
     - 39080:9080
     dependJobsLabelSelector:
-    - dep-job
+    - "job-name=dep-job"
     syncFilePattern:
     - .
     ignoreFilePattern:
@@ -46,7 +46,7 @@ services:
     ignoreFilePattern:
     - .git
     dependJobsLabelSelector:
-    - "dep-job"
+    - "job-name=dep-job"
     dependPodsLabelSelector:
     - "productpage"
     - "app.kubernetes.io/name=productpage"
