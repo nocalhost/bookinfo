@@ -13,13 +13,19 @@ services:
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-productpage
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
-    workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
+    workDir: /root/nocalhost-dev
+    persistentVolumeDirs: 
+      - /root
+    devContainerShell: ""
     devPorts:
-    - 39080:9080
+      - 39080:9080
     dependJobsLabelSelector:
-    - "dep-job"
+      - dep-job
+    syncedPattern:
+      - .
+    ignoredPattern:
+      - .git
+
   - name: details
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-details.git
