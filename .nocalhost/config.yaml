@@ -16,7 +16,7 @@ services:
     workDir: /root/nocalhost-dev
     persistentVolumeDirs: 
     - path: /root
-    devContainerShell: ""
+    devContainerShell: "bash"
     devPorts:
     - 39080:9080
     dependJobsLabelSelector:
