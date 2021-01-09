@@ -25,7 +25,9 @@ services:
     - .
     ignoreFilePattern:
     - .git
-
+    runCommand: ["./run.sh"]
+    hotReloadRunCommand: ["./run.sh"]
+    
   - name: details
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-details.git
@@ -34,13 +36,23 @@ services:
     - .
     ignoreFilePattern:
     - .git
-    workDir: /home/nocalhost-dev
-    
+    workDir: /root/nocalhost-dev
+    persistentVolumeDirs: 
+    - path: /root
+    devContainerShell: "bash"
+    devPorts:
+    - 29080:9080
+
   - name: ratings
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-ratings.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
-    workDir: /home/nocalhost-dev
+    workDir: /root/nocalhost-dev
+    persistentVolumeDirs: 
+    - path: /root
+    devContainerShell: "bash"
+    devPorts:
+    - 19080:9080
     syncFilePattern:
     - .
     ignoreFilePattern:
@@ -55,7 +67,11 @@ services:
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-reviews.git
     devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
-    workDir: /home/nocalhost-dev
+    persistentVolumeDirs: 
+    - path: /root
+    devContainerShell: "bash"
+    devPorts:
+    - 49080:9080
     syncFilePattern:
     - .
     ignoreFilePattern:
