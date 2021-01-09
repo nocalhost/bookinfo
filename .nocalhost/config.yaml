@@ -42,7 +42,8 @@ services:
     devContainerShell: "bash"
     devPorts:
     - 29080:9080
-
+    runCommand: ["ruby", "details.rb", "9080"]
+    
   - name: ratings
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-ratings.git
@@ -62,7 +63,8 @@ services:
     dependPodsLabelSelector:
     - "productpage"
     - "app.kubernetes.io/name=productpage"
-    
+    runCommand: ["npm","install", "&&", "node", "ratings.js", "9080"]
+
   - name: reviews
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-reviews.git
@@ -78,3 +80,6 @@ services:
     - .git
     dependPodsLabelSelector:
     - "productpage"
+    buildCommand: ["./gradlew", "build"]
+    runCommand: ["./gradlew", "bootRun"]
+    debugCommand: ["./gradlew", "bootRun", "--debug-jvm"]
