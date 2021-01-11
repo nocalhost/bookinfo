@@ -36,8 +36,6 @@ services:
     - .
     ignoreFilePattern:
     - .git
-    dependJobsLabelSelector:
-    - "job-name=dep-job"
     dependPodsLabelSelector:
     - "productpage"
     - "app.kubernetes.io/name=productpage"
