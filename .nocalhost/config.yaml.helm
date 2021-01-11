@@ -37,8 +37,7 @@ services:
     ignoreFilePattern:
     - .git
     dependPodsLabelSelector:
-    - "productpage"
-    - "app.kubernetes.io/name=productpage"
+    - "app=productpage"
     
   - name: reviews
     serviceType: deployment
