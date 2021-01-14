@@ -68,12 +68,14 @@ services:
   - name: reviews
     serviceType: deployment
     gitUrl: https://github.com/nocalhost/bookinfo-reviews.git
-    devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
+    devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/public/coding-java:latest
+    workDir: /root/reviews
     persistentVolumeDirs: 
-    - path: /root
+    - path: /root/reviews
     devContainerShell: "bash"
     devPorts:
     - 49080:9080
+    - 5005:5005
     syncFilePattern:
     - .
     ignoreFilePattern:
