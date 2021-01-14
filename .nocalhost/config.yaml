@@ -62,7 +62,7 @@ services:
     - "job-name=dep-job"
     dependPodsLabelSelector:
     - "productpage"
-    - "app.kubernetes.io/name=productpage"
+    - "productpage"
     runCommand: ["npm","install", "&&", "node", "ratings.js", "9080"]
 
   - name: reviews
