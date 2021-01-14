@@ -74,7 +74,6 @@ services:
     - path: /root/reviews
     devContainerShell: "bash"
     devPorts:
-    - 49080:9080
     - 5005:5005
     syncFilePattern:
     - .
