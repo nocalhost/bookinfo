@@ -20,6 +20,7 @@ application:
   services:
     - name: productpage
       serviceType: deployment
+      dependLabelSelector: 
         jobs:
           - "dep-job"
       containers:
