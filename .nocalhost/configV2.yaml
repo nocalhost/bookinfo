@@ -12,44 +12,24 @@ application:
       weight: "1"
     - path: manifest/templates/pre-install/print-num-job-02.yaml
       weight: "-5"
-  # Helm
-  # helmValues:
-  #   - key: DOMAIN
-  #     value: ${DOMAIN:-www.coding.com}
-  #   - key: DEBUG
-  #     value: ${DEBUG:-true}
-  # 1.1 对所有工作负载安装时注入指定 K/V 环境变量，支持使用 envFile 内的环境变量，优先级最高
   env: 
     - name: DEBUG
       value: ${DEBUG:-false}
     - name: DOMAIN
       value: ${DOMAIN:-www.coding.com}
-  # 1.2 对所有工作负载注入指定 envFile 作为环境变量，如果 env 和 envFrom 同时配置，则取并集，交集部分以 env 为主
-  # envFrom: 
-  #   envFile: 
-  #     - path: dev.env
   services:
     - name: productpage
       serviceType: deployment
-      dependLabelSelector: 
-        # pods: 
-        #   - "name=mariadb"
-        #   - "app.kubernetes.io/name=mariadb"
         jobs:
           - "dep-job"
       containers:
-        - name: productpage  # 选填，多容器支持
+        - name: productpage
           install: 
             env: 
               - name: DEBUG
                 value: "false"
               - name: DOMAIN
                 value: "codingcorp.coding.com"
-            # envFrom: 
-            #   envFile: 
-            #     - path: dev.env
-            #     - path: dev.env
-            # 安装后需要打通的端口
             portForward:   
               - 39080:9080
           dev:
@@ -67,15 +47,6 @@ application:
             persistentVolumeDirs: 
               - path: "/home"
                 capacity: 10Gi
-            # command: 
-            #   build: ["./gradlew", "package"]
-            #   run: ["./gradlew", "bootRun"]
-            #   debug: ["./gradlew", "bootRun", "--debug-jvm"]
-            #   hotReloadRun: ["bash", "-c", "kill `ps -ef|grep -i gradlew| grep -v grep| awk '{print $2}'`; gradlew bootRun"]
-            #   hotReloadDebug: ["bash", "-c", "kill `ps -ef|grep -i gradlew| grep -v grep| awk '{print $2}'`; gradlew bootRun --debug-jvm"]
-            # debug: 
-            #   remoteDebugPort: 5005
-            # useDevContainer: false
             sync: 
               type: send
               filePattern: 
@@ -85,10 +56,6 @@ application:
             env: 
             - name: DEBUG
               value: "true"
-            # envFrom:
-            #   envFile: 
-            #     - path: dev.env
-            #  devPorts -> portForward
             portForward:
             - 39080:9080
     - name: details
