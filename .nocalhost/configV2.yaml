@@ -16,7 +16,7 @@ application:
     - name: DEBUG
       value: ${DEBUG:-false}
     - name: DOMAIN
-      value: ${DOMAIN:-www.coding.com}
+      value: ${DOMAIN:-coding.net}
   services:
     - name: productpage
       serviceType: deployment
@@ -26,11 +26,6 @@ application:
       containers:
         - name: productpage
           install: 
-            env: 
-              - name: DEBUG
-                value: "false"
-              - name: DOMAIN
-                value: "codingcorp.coding.com"
             portForward:   
               - 39080:9080
           dev:
@@ -38,35 +33,18 @@ application:
             image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
             shell: bash
             workDir: /home/nocalhost-dev
-            resources:
-              limits:
-                cpu: "1"
-                memory: 1Gi
-              requests:
-                cpu: "0.5"
-                memory: 512Mi
-            persistentVolumeDirs: 
-              - path: "/home"
-                capacity: 10Gi
             sync: 
               type: send
               filePattern: 
                 - ./
               ignoreFilePattern:
                 - ".git"
-            env: 
-            - name: DEBUG
-              value: "true"
             portForward:
             - 39080:9080
     - name: details
       serviceType: deployment
       containers:
-        - install: 
-            env: 
-              - name: DEBUG
-                value: "false"
-          dev:
+        - dev:
             gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
             image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
             shell: bash
@@ -89,11 +67,7 @@ application:
         jobs:
           - "dep-job"
       containers:
-        - install: 
-            env: 
-              - name: DEBUG
-                value: "false"
-          dev:
+        - dev:
             gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
             image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
             shell: bash
@@ -113,11 +87,7 @@ application:
         pods: 
           - "productpage"
       containers:
-        - install: 
-            env: 
-              - name: DEBUG
-                value: "false"
-          dev:
+        - dev:
             gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
             image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
             shell: bash
@@ -128,6 +98,3 @@ application:
                 - ./
               ignoreFilePattern:
                 - ".git"
-            env: 
-            - name: DEBUG
-              value: "true"
