@@ -37,6 +37,11 @@ spec:
           value: "/tmp/logs"
         ports:
         - containerPort: 9080
+        readinessProbe:
+          tcpSocket:
+            port: 9080
+          initialDelaySeconds: 5
+          periodSeconds: 10
         volumeMounts:
         - name: tmp
           mountPath: /tmp

@@ -38,4 +38,9 @@ spec:
             name: bookinfo-pre-install-config
         ports:
         - containerPort: 9080
+        readinessProbe:
+          tcpSocket:
+            port: 9080
+          initialDelaySeconds: 5
+          periodSeconds: 10
 ---
