@@ -1,0 +1,6 @@
+resources:
+- detail.yaml
+- productpage.yaml
+- ratings.yaml
+- reviews.yaml
+- dep-job.yaml

@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dep-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: print-num
+        image: codingcorp-docker.pkg.coding.net/nocalhost/public/alpine:latest
+        command: ["sleep", "2"]
+      restartPolicy: Never
+  backoffLimit: 4

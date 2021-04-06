@@ -1,0 +1,100 @@
+configProperties:
+  version: v2
+  envFile: env.dev
+
+application:
+  name: bookinfo
+  manifestType: kustomizeGit
+  resourcePath: ["kustomize/base"]
+  ignoredPath: []
+  onPreInstall: 
+    - path: kustomize/base/pre-install/print-num-job-01.yaml
+      weight: "1"
+    - path: kustomize/base/pre-install/print-num-job-02.yaml
+      weight: "-5"
+  env: 
+    - name: DEBUG
+      value: ${DEBUG:-false}
+    - name: DOMAIN
+      value: ${DOMAIN:-coding.net}
+  services:
+    - name: productpage
+      serviceType: deployment
+      dependLabelSelector: 
+        jobs:
+          - "dep-job"
+      containers:
+        - name: productpage
+          install: 
+            portForward:   
+              - 39080:9080
+          dev:
+            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-productpage.git
+            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
+            shell: bash
+            workDir: /home/nocalhost-dev
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+            portForward:
+            - 39080:9080
+    - name: details
+      serviceType: deployment
+      containers:
+        - dev:
+            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
+            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+            shell: bash
+            workDir: /home/nocalhost-dev
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+            env: 
+            - name: DEBUG
+              value: "true"
+    - name: ratings
+      serviceType: deployment
+      dependLabelSelector: 
+        pods: 
+          - "productpage"
+          - "app.kubernetes.io/name=productpage"
+        jobs:
+          - "dep-job"
+      containers:
+        - dev:
+            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
+            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
+            shell: bash
+            workDir: /home/nocalhost-dev
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+            env: 
+            - name: DEBUG
+              value: "true"
+    - name: reviews
+      serviceType: deployment
+      dependLabelSelector: 
+        pods: 
+          - "productpage"
+      containers:
+        - dev:
+            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
+            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
+            shell: bash
+            workDir: /home/nocalhost-dev
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"

@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: details
+  labels:
+    app: details
+    service: details
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: details
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: details
+  labels:
+    app: details
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: details
+  template:
+    metadata:
+      labels:
+        app: details
+    spec:
+      containers:
+      - name: details
+        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details
+        imagePullPolicy: IfNotPresent
+        command: ['ruby', 'details.rb', '9080']
+        envFrom:
+        - configMapRef:
+            name: bookinfo-pre-install-config
+        ports:
+        - containerPort: 9080
+        readinessProbe:
+          tcpSocket:
+            port: 9080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
