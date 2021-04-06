@@ -29,60 +29,7 @@ We commit some changes to demonstrate nocalhost better. Here are some main chang
 
 # About `.nocalhost` directory
 
-`.nocalhost` is a directory in the root of repository which stores the configurations of nocalhost. In this case, the file `config.yaml` :
-
-```yaml
-name: bookinfo
-manifestType: rawManifest
-resourcePath: ["manifest/templates"]
-
-onPreInstall:
-  - path: manifest/templates/pre-install/print-num-job-01.yaml
-    weight: "1"
-  - path: manifest/templates/pre-install/print-num-job-02.yaml
-    weight: "-5"
-
-services:
-  - name: productpage
-    serviceType: deployment
-    gitUrl: https://github.com/nocalhost/bookinfo-productpage
-    devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim
-    workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
-    devPorts:
-    - :9080
-    dependJobsLabelSelector:
-    - "dep-job"
-  - name: details
-    serviceType: deployment
-    gitUrl: https://github.com/nocalhost/bookinfo-details.git
-    devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
-    syncDirs:
-    - ./
-    workDir: /home/nocalhost-dev
-  - name: ratings
-    serviceType: deployment
-    gitUrl: https://github.com/nocalhost/bookinfo-ratings.git
-    devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
-    workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
-    dependJobsLabelSelector:
-    - "dep-job"
-    dependPodsLabelSelector:
-    - "productpage"
-    - "app.kubernetes.io/name=productpage"
-  - name: reviews
-    serviceType: deployment
-    gitUrl: https://github.com/nocalhost/bookinfo-reviews.git
-    devContainerImage: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
-    workDir: /home/nocalhost-dev
-    syncDirs:
-    - ./
-    dependPodsLabelSelector:
-    - "productpage"
-```
+`.nocalhost` is a directory in the root of repository which stores the configurations of nocalhost. In this case, the file `config.yaml`: https://github.com/nocalhost/bookinfo/blob/main/.nocalhost/config.yaml
 
 # How to start?
 
