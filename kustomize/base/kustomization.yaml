@@ -4,3 +4,4 @@ resources:
 - ratings.yaml
 - reviews.yaml
 - dep-job.yaml
+- pre-install-cm.yaml
