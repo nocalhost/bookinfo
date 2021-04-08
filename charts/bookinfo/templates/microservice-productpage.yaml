@@ -25,16 +25,29 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: productpage
       app.kubernetes.io/name: productpage
+      app: productpage
   template:
     metadata:
       labels:
+        app.kubernetes.io/name: productpage
         app: productpage
     spec:
       containers:
       - name: productpage
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/productpage
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
+        command: ['python', 'productpage.py', '9080']
         ports:
         - containerPort: 9080
+        readinessProbe:
+          tcpSocket:
+            port: 9080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
