@@ -55,6 +55,22 @@
         image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
         shell: bash
         workDir: /home/nocalhost-dev
+        command:
+          build: []
+          run:
+            - node
+            - ratings.js
+          debug:
+            - npm
+            - install
+            - "&&"
+            - node
+            - --inspect-brk
+            - ratings.js
+          hotReloadRun: []
+          hotReloadDebug: []
+        debug:
+          remoteDebugPort: 9229
         sync: 
           type: send
           filePattern: 
