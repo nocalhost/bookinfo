@@ -33,9 +33,9 @@ spec:
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details
         imagePullPolicy: IfNotPresent
         command: ['ruby', 'details.rb', '9080']
-        envFrom:
-        - configMapRef:
-            name: bookinfo-pre-install-config
+     #   envFrom:
+     #   - configMapRef:
+     #       name: bookinfo-pre-install-config
         ports:
         - containerPort: 9080
         readinessProbe:
