@@ -33,9 +33,6 @@ spec:
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details
         imagePullPolicy: IfNotPresent
         command: ['ruby', 'details.rb', '9080']
-     #   envFrom:
-     #   - configMapRef:
-     #       name: bookinfo-pre-install-config
         ports:
         - containerPort: 9080
         readinessProbe:
@@ -43,4 +40,8 @@ spec:
             port: 9080
           initialDelaySeconds: 5
           periodSeconds: 10
+      - name: ubuntu
+        image: codingcorp-docker.pkg.coding.net/nocalhost/public/ubuntu:stable
+        imagePullPolicy: IfNotPresent
+        command: ['/bin/sh', '-c', 'tail -f /dev/null']     
 ---
