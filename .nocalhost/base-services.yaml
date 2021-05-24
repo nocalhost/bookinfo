@@ -5,9 +5,6 @@
       - "dep-job"
   containers:
     - name: productpage
-      install: 
-        portForward:   
-          - 39080:9080
       dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-productpage.git
         image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
@@ -21,8 +18,6 @@
             - ".git"
             - ".github"
             - ".idea"
-        portForward:
-        - 39080:9080
 - name: details
   serviceType: deployment
   containers:
