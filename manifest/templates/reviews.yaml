@@ -47,9 +47,15 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        - name: pvc-vol-01
+          mountPath: /opt/workdir
       volumes:
       - name: wlp-output
         emptyDir: {}
       - name: tmp
         emptyDir: {}
+      - persistentVolumeClaim:
+          claimName: pvc-01
+          readOnly: false
+        name: pvc-vol-01
 ---
