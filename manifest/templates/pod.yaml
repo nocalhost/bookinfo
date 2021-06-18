@@ -1,0 +1,11 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-01
+spec:
+  containers:
+    - name: print-num
+      image: 'codingcorp-docker.pkg.coding.net/nocalhost/public/alpine:latest'
+      command:
+        - sleep
+        - '3600'
