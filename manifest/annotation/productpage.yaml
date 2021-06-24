@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: productpage
+  labels:
+    app: productpage
+    service: productpage
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: productpage
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productpage
+  labels:
+    app: productpage
+    app.kubernetes.io/name: productpage
+  annotations:
+    dev.nocalhost: |
+      containers:
+        - name: productpage
+          install: 
+            portForward:   
+              - 39080:9080
+          dev:
+            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-productpage.git
+            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
+            shell: bash
+            workDir: /home/nocalhost-dev
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+                - ".github"
+                - ".idea"
+            portForward:
+            - 39080:9080
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: productpage
+      app: productpage
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: productpage
+        app: productpage
+    spec:
+      containers:
+      - name: productpage
+        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/productpage
+        imagePullPolicy: IfNotPresent
+        command: ['python', 'productpage.py', '9080']
+        ports:
+        - containerPort: 9080
+        readinessProbe:
+          tcpSocket:
+            port: 9080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
+---

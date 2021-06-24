@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ratings
+  labels:
+    app: ratings
+    service: ratings
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: ratings
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings
+  labels:
+    app: ratings
+  annotations:
+    dev.nocalhost: |
+      containers:
+        - dev:
+            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
+            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
+            shell: bash
+            workDir: /home/nocalhost-dev
+            command:
+              build: []
+              run:
+                - node
+                - ratings.js
+              debug:
+                - npm
+                - install
+                - "&&"
+                - node
+                - --inspect-brk
+                - ratings.js
+              hotReloadRun: []
+              hotReloadDebug: []
+            debug:
+              remoteDebugPort: 9229
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+                - ".github"
+                - "node_modules"
+            env: 
+            - name: DEBUG
+              value: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ratings
+  template:
+    metadata:
+      labels:
+        app: ratings
+    spec:
+      containers:
+      - name: ratings
+        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/ratings
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9080
+        readinessProbe:
+          tcpSocket:
+            port: 9080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
