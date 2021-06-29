@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: details
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details
-        imagePullPolicy: Always
+        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080

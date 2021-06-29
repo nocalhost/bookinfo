@@ -31,7 +31,7 @@ spec:
       containers:
       - name: reviews
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/reviews:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
           value: "/tmp/logs"
