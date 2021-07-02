@@ -6,6 +6,9 @@
   containers:
     - name: productpage
       install: 
+	env:
+	  - name: aaaa
+	    value: heloworld
         portForward:   
           - 39080:9080
       dev:
