@@ -1,0 +1,29 @@
+configProperties:
+  version: v2
+  envFile: env.dev
+
+application:
+  helmVals:
+    service:
+      port: 9082
+
+    bookinfo:
+      deploy:
+        resources:
+          limits:
+            cpu: 1m
+            memory: 1Mi
+          requests:
+            cpu: 1m
+            memory: 1Mi
+
+  name: bookinfo
+  manifestType: helmGit
+  resourcePath: ["charts/bookinfo"]
+  env: 
+    - name: DEBUG
+      value: ${DEBUG:-false}
+    - name: DOMAIN
+      value: ${DOMAIN:-coding.net}
+  services:
+    ${_INCLUDE_:-./base-services.yaml | nindent 4}

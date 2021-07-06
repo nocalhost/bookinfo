@@ -1,1 +1,8 @@
 ServiceType: NodePort
+
+service:
+  port: 9081
+
+bookinfo:
+  deploy:
+    resources: {}

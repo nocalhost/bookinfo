@@ -8,7 +8,7 @@ metadata:
     service: reviews
 spec:
   ports:
-  - port: 9080
+  - port: {{ .Values.service.port }}
     name: http
   selector:
     app: reviews
@@ -34,14 +34,16 @@ spec:
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/reviews:latest
         env:
         - name: server.port
-          value: "9080"
+          value: "{{ .Values.service.port }}"
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 9080
-        
+        - containerPort: {{ .Values.service.port }}
+        resources:
+          {{- toYaml .Values.bookinfo.deploy.resources | nindent 10 }}
+
         livenessProbe:
           httpGet:
             path: /health
-            port: 9080
+            port: {{ .Values.service.port }}
           failureThreshold: 1
           periodSeconds: 10

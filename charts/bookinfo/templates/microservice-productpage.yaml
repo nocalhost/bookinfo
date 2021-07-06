@@ -8,7 +8,7 @@ metadata:
     service: productpage
 spec:
   ports:
-  - port: 9080
+  - port: {{ .Values.service.port }}
     name: http
   selector:
     app: productpage
@@ -38,11 +38,13 @@ spec:
         image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/productpage:latest
         imagePullPolicy: IfNotPresent
         command: ['python', 'productpage.py', '9080']
+        resources:
+          {{- toYaml .Values.bookinfo.deploy.resources | nindent 10 }}
         ports:
         - containerPort: 9080
         readinessProbe:
           tcpSocket:
-            port: 9080
+            port: {{ .Values.service.port }}
           initialDelaySeconds: 5
           periodSeconds: 10
         volumeMounts:
