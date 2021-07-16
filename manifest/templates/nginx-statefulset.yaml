@@ -23,11 +23,7 @@ spec:
           volumeMounts:
             - name: www
               mountPath: /usr/share/nginx/html
-  volumeClaimTemplates:
-    - metadata:
-        name: www
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 10Gi
+      volumes:
+        - name: www
+          emptyDir:
+            sizeLimit: 1Gi
