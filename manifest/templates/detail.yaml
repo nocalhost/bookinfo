@@ -40,7 +40,7 @@ spec:
             port: 9080
           initialDelaySeconds: 5
           periodSeconds: 10
-      - name: ubuntu
+      - name: sidecar
         image: codingcorp-docker.pkg.coding.net/nocalhost/public/ubuntu:stable
         imagePullPolicy: IfNotPresent
         command: ['/bin/sh', '-c', 'tail -f /dev/null']     
