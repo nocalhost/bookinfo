@@ -7,10 +7,28 @@ application:
   manifestType: rawManifest
   resourcePath: ["manifest/templates"]
   ignoredPath: []
-  onPreInstall: 
+  onPreInstall:
     - path: manifest/templates/pre-install/print-num-job-01.yaml
       weight: "1"
-  env: 
+    - path: manifest/templates/hook/pre-install.yaml
+      weight: "1"
+  onPostInstall:
+    - path: manifest/templates/hook/post-install.yaml
+      weight: "1"
+  onPreUpgrade:
+    - path: manifest/templates/hook/pre-upgrade.yaml
+      weight: "1"
+  onPostUpgrade:
+    - path: manifest/templates/hook/post-upgrade.yaml
+      weight: "1"
+  onPreDelete:
+    - path: manifest/templates/hook/pre-delete.yaml
+      weight: "1"
+  onPostDelete:
+    - path: manifest/templates/hook/post-delete.yaml
+      weight: "1"
+
+  env:
     - name: DEBUG
       value: ${DEBUG:-false}
     - name: DOMAIN

@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pre-upgrade
+spec:
+  template:
+    spec:
+      containers:
+      - name: pre-upgrade
+        image: codingcorp-docker.pkg.coding.net/nocalhost/public/alpine:latest
+        command: ["sleep", "2"]
+      restartPolicy: Never
+  backoffLimit: 4
