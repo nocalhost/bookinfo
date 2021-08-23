@@ -3,5 +3,6 @@ resources:
 - productpage.yaml
 - ratings.yaml
 - reviews.yaml
+- authors.yaml
 - dep-job.yaml
 - pre-install-cm.yaml
