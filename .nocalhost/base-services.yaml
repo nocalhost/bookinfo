@@ -116,7 +116,7 @@
   containers:
     - dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-authors.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/goland:latest
+        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
         shell: sh
         workDir: /home/nocalhost-dev
         command:
