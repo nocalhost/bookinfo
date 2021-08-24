@@ -26,8 +26,11 @@
             capacity: 10Gi
         command:
           run:
-            - sh
-            - run.sh
+            - ./run.sh
+          debug:
+            - ./debug.sh
+        debug:
+          remoteDebugPort: 9009
         sync: 
           type: send
           filePattern: 
