@@ -34,8 +34,9 @@ We commit some changes to demonstrate nocalhost better. Here are some main chang
 
 # How to start?
 
-https://nocalhost.dev/quickstart
+https://nocalhost.dev/docs/quick-start/
 
 # Contribute
-https://nocalhost.dev/contribute
+
+https://github.com/nocalhost/nocalhost/blob/main/CONTRIBUTING.md
 
