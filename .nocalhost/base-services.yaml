@@ -110,9 +110,6 @@
             - "build"
 - name: authors
   serviceType: deployment
-  dependLabelSelector:
-    pods:
-      - "authors"
   containers:
     - dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-authors.git
