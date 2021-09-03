@@ -48,6 +48,10 @@ spec:
         volumeMounts:
         - name: tmp
           mountPath: /tmp
+        {{- with .Values.resources.productpage }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
       volumes:
       - name: tmp
         emptyDir: {}

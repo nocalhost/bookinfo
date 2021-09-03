@@ -30,6 +30,13 @@
             - ".idea"
         portForward:
         - 39080:9080
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "0.5"
+            memory: 512Mi
 - name: details
   serviceType: deployment
   containers:
@@ -89,6 +96,13 @@
         env: 
         - name: DEBUG
           value: "true"
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "0.5"
+            memory: 512Mi
 - name: reviews
   serviceType: deployment
   dependLabelSelector: 
@@ -115,6 +129,13 @@
             - ".github"
             - ".gradle"
             - "build"
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: "0.5"
+            memory: 512Mi
 - name: authors
   serviceType: deployment
   containers:
@@ -135,3 +156,10 @@
           ignoreFilePattern:
             - ".git"
             - ".github"
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "0.5"
+            memory: 512Mi
