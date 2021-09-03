@@ -35,3 +35,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
+        {{- with .Values.resources.ratings }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}

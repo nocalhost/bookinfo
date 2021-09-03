@@ -39,4 +39,11 @@ spec:
             port: 9080
           initialDelaySeconds: 5
           periodSeconds: 10
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 32Mi
 ---
