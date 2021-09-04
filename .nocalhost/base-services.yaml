@@ -65,15 +65,9 @@
         command:
           build: []
           run:
-            - node
-            - ratings.js
+            - ./run.sh
           debug:
-            - npm
-            - install
-            - "&&"
-            - node
-            - --inspect-brk
-            - ratings.js
+            - ./debug.sh
           hotReloadRun: []
           hotReloadDebug: []
         debug:
@@ -84,6 +78,7 @@
             - ./
           ignoreFilePattern:
             - ".git"
+            - ".idea"
             - ".github"
             - "node_modules"
         env: 
