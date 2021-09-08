@@ -1,5 +1,7 @@
 # README
 
+### 指定已存在的 Namespace 安装
+
 #### Annotation 注入依赖
 
 1. helm dep build
@@ -9,6 +11,14 @@
 
 1. helm dep build
 2. helm install bookinfo . -f values-full-config.yaml --namespace xx --kubeconfig xxx
+
+### 自动创建 NS 并安装
+
+1. helm install bookinfo . -f values-annotation-config.yaml \
+  --set dep.dep.match.namespace.label.key=dep-inject \
+  --set dep.dep.match.namespace.label.value=true \
+  -n foo --create-namespace --kubeconfig xxx
+
 
 ******
 
