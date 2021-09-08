@@ -1,6 +1,9 @@
 ServiceType: NodePort
 
 nocalhost:
+  config:
+    path: ""
+
   annotations:
     path:
       authors: ""

@@ -2,15 +2,15 @@ ServiceType: ClusterIP
 
 nocalhost:
   config:
-    path: ""
+    path: "config-example/cm/nocalhost-config.yaml"
 
   annotations:
     path:
-      authors: "config-example/annotations/authors.yaml"
-      details: "config-example/annotations/details.yaml"
-      productpage: "config-example/annotations/productpage.yaml"
-      ratings: "config-example/annotations/ratings.yaml"
-      reviews: "config-example/annotations/reviews.yaml"
+      authors: ""
+      details: ""
+      productpage: ""
+      ratings: ""
+      reviews: ""
 
 resources:
   authors:
