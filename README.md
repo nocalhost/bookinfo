@@ -3,7 +3,15 @@
 This is a nocalhost config demo project. Bookinfo is from Istio samples(https://github.com/istio/istio/tree/master/samples/bookinfo). 
 
 # Install
+Use `helm install whatever ./chart/bookinfo` to use the default `values` to install bookinfo,
+this installation will use this `chart/bookinfo/example/config-from-cm/nocalhost-service-config.yaml`
+cm configuration file to install, experience pure cm nocalhost installation.
 
+Using the `values` `values-full-config.yaml` to install bookinfo, is also a pure cm experience,
+but the app-level config is indicated, which is slightly different.
+
+Finally, use `values-annotation-config.yaml` to install, it will use cm as values 
+and also fill in the value of annotations, experience annotations & cm to install the application
 
 
 # Micro Services
