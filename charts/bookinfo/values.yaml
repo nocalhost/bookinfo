@@ -1,6 +1,8 @@
 # this is a normal case of nocalhost config
 # use []ServiceConfig as configmap as nocalhost install config
 
+dep:
+  enable: true
 nocalhost:
   config:
     path: example/config-from-cm/nocalhost-service-config.yaml

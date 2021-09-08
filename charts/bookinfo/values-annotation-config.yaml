@@ -3,7 +3,8 @@
 #
 # also specify the annotation config, and it's priority is higher
 # than cm config
-
+dep:
+  enable: true
 nocalhost:
   config:
     path: example/config-from-cm/nocalhost-service-config.yaml
