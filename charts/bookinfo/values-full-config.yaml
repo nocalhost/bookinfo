@@ -1,9 +1,9 @@
 # this is a normal case of nocalhost config
-# use []ServiceConfig as configmap as nocalhost install config
+# use App Config as configmap as nocalhost install config
 
 nocalhost:
   config:
-    path: example/config-from-cm/nocalhost-service-config.yaml
+    path: example/config-from-cm/nocalhost-full-config.yaml
 
   annotations:
     path:

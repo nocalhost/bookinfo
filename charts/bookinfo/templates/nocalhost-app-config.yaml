@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  # [Nocalhost]: nocalhost configmap should be named with dev.nocalhost.config.${appName}
+  name: "dev.nocalhost.config.{{ .Release.Name }}"
+  # [Nocalhost]: labels {dep-management: nocalhost} is also required
+  labels:
+    dep-management: nocalhost
+  annotations:
+    "helm.sh/hook": pre-install
+data:
+  config: |-
+    {{ .Files.Get .Values.nocalhost.config.path | nindent 4 }}

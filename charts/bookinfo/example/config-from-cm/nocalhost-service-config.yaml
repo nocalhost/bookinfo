@@ -1,13 +1,11 @@
 - name: productpage
   serviceType: deployment
-  dependLabelSelector: 
-    jobs:
-      - "dep-job"
   containers:
     - name: productpage
-      install: 
-        portForward:   
-          - 39080:9080
+      install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: BASE
       dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-productpage.git
         image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage-with-pydevd
@@ -20,91 +18,78 @@
             - ./debug.sh
         debug:
           remoteDebugPort: 9009
-        sync: 
+        sync:
           type: send
-          filePattern: 
+          filePattern:
             - ./
           ignoreFilePattern:
             - ".git"
             - ".github"
             - ".idea"
-        portForward:
-        - 39080:9080
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi
+
 - name: details
   serviceType: deployment
   containers:
-    - dev:
+    - install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: BASE
+      dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
         image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
         shell: bash
         workDir: /home/nocalhost-dev
-        sync: 
+        sync:
           type: send
-          filePattern: 
+          filePattern:
             - ./
           ignoreFilePattern:
             - ".git"
             - ".github"
-        env: 
-        - name: DEBUG
-          value: "true"
+
 - name: ratings
   serviceType: deployment
-  dependLabelSelector: 
-    pods: 
+  dependLabelSelector:
+    pods:
       - "productpage"
-      - "app.kubernetes.io/name=productpage"
-    jobs:
-      - "dep-job"
   containers:
-    - dev:
+    - install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: BASE
+      dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
         image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
         shell: bash
         workDir: /home/nocalhost-dev
         command:
-          build: []
           run:
             - ./run.sh
           debug:
             - ./debug.sh
-          hotReloadRun: []
-          hotReloadDebug: []
         debug:
           remoteDebugPort: 9229
-        sync: 
+        sync:
           type: send
-          filePattern: 
+          filePattern:
             - ./
           ignoreFilePattern:
             - ".git"
             - ".idea"
             - ".github"
             - "node_modules"
-        env: 
-        - name: DEBUG
-          value: "true"
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi
+
 - name: reviews
   serviceType: deployment
-  dependLabelSelector: 
-    pods: 
+  dependLabelSelector:
+    pods:
       - "productpage"
   containers:
-    - dev:
+    - install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: BASE
+      dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
         image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
         shell: bash
@@ -115,26 +100,27 @@
           debug: [ "./gradlew", "bootRun", "--debug-jvm" ]
         debug:
           remoteDebugPort: 5005
-        sync: 
+        sync:
           type: send
-          filePattern: 
+          filePattern:
             - ./
           ignoreFilePattern:
             - ".git"
             - ".github"
             - ".gradle"
             - "build"
-        resources:
-          limits:
-            cpu: "2"
-            memory: 2Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi
+
 - name: authors
   serviceType: deployment
+  dependLabelSelector:
+    pods:
+      - "productpage"
   containers:
-    - dev:
+    - install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: BASE
+      dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-authors.git
         image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
         shell: sh
@@ -151,10 +137,3 @@
           ignoreFilePattern:
             - ".git"
             - ".github"
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi

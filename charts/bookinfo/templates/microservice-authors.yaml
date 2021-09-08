@@ -17,6 +17,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: authors
+  {{- if .Values.nocalhost.annotations.path.authors }}
+  annotations:
+    dev.nocalhost: |-
+      {{ .Files.Get .Values.nocalhost.annotations.path.authors | nindent 6 }}
+  {{- end }}
   labels:
     app: authors
 spec:
@@ -35,8 +40,4 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
-        {{- with .Values.resources.authors }}
-        resources:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
 

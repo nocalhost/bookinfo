@@ -17,6 +17,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ratings
+  {{- if .Values.nocalhost.annotations.path.ratings }}
+  annotations:
+    nocalhost.dev: |-
+      {{ .Files.Get .Values.nocalhost.annotations.path.ratings | nindent 6 }}
+  {{- end }}
   labels:
     app: ratings
 spec:
@@ -35,7 +40,3 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
-        {{- with .Values.resources.ratings }}
-        resources:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}

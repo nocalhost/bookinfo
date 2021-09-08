@@ -1,0 +1,20 @@
+# this is a normal case of nocalhost config
+# use []ServiceConfig as configmap as nocalhost install config
+#
+# also specify the annotation config, and it's priority is higher
+# than cm config
+
+nocalhost:
+  config:
+    path: example/config-from-cm/nocalhost-service-config.yaml
+
+  annotations:
+    path:
+      authors: example/config-from-annotations/authors.yaml
+      details: example/config-from-annotations/details.yaml
+      productpage: example/config-from-annotations/productpage.yaml
+      ratings: ""
+      reviews: ""
+
+
+

@@ -17,6 +17,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reviews
+  {{- if .Values.nocalhost.annotations.path.reviews }}
+  annotations:
+    nocalhost.dev: |-
+      {{ .Files.Get .Values.nocalhost.annotations.path.reviews | nindent 6 }}
+  {{- end }}
   labels:
     app: reviews
 spec:
@@ -38,8 +43,3 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
-        {{- with .Values.resources.reviews }}
-        resources:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
-        

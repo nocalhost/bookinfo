@@ -1,6 +1,10 @@
 # Develop bookinfo with nocalhost
 
-This is a demo project for nocalhost. Bookinfo is from Istio samples(https://github.com/istio/istio/tree/master/samples/bookinfo). 
+This is a nocalhost config demo project. Bookinfo is from Istio samples(https://github.com/istio/istio/tree/master/samples/bookinfo). 
+
+# Install
+
+
 
 # Micro Services
 Bookinfo is a typical microservice architecture application, which consists of 5 services:
@@ -27,10 +31,6 @@ We commit some changes to demonstrate nocalhost better. Here are some main chang
 - Changed the framework of reviews service to spring-boot. Nothing but everyone loves spring-boot.
 - Configured GitHub Action for every microservice to auto build Docker images.
 - Added a .nocalhost directory to support development with nocalhost.
-
-# About `.nocalhost` directory
-
-`.nocalhost` is a directory in the root of repository which stores the configurations of nocalhost. In this case, the file `config.yaml`: https://github.com/nocalhost/bookinfo/blob/main/.nocalhost/config.yaml
 
 # How to start?
 
