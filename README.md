@@ -29,6 +29,11 @@ helm install bookinfo . -f values-annotation-config.yaml \
 
 ******
 
+### 标准化相关
+
+1. 开发环境通过开关 `dep.enable=false` 控制 dep 组件不重复安装
+2. 交付环境默认 `dep.enable=true` 安装 dep 组件控制依赖启动顺序
+
 ## 文档说明
 
 #### 一、如何正确配置 Nocalhost `Cm config` 与 `Annotation Config`
