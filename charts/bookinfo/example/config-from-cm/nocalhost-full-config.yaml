@@ -4,6 +4,7 @@ application:
       value: EXAMPLE
     - name: APP_ENV_2
       value: EXAMPLE
+
   services:
     - name: productpage
       serviceType: deployment

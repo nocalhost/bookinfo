@@ -1,7 +1,5 @@
-- name: details
-  serviceType: deployment
-  containers:
-    - install:
-        env:
-          - name: ENV_INJECT_EXAM
-            value: ANNOTATIONS
+containers:
+  - install:
+      env:
+        - name: ENV_INJECT_EXAM
+          value: ANNOTATIONS
