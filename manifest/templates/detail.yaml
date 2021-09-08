@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: details
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/details
         imagePullPolicy: IfNotPresent
         command: ['ruby', 'details.rb', '9080']
         ports:
@@ -48,7 +48,7 @@ spec:
             cpu: 10m
             memory: 32Mi
       - name: sidecar
-        image: codingcorp-docker.pkg.coding.net/nocalhost/public/ubuntu:stable
+        image: nocalhost-docker.pkg.coding.net/nocalhost/public/ubuntu:stable
         imagePullPolicy: IfNotPresent
         command: ['/bin/sh', '-c', 'tail -f /dev/null']
         resources:

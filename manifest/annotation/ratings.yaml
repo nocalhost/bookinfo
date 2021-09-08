@@ -22,8 +22,8 @@ metadata:
     dev.nocalhost: |
       containers:
         - dev:
-            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
+            gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-ratings.git
+            image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
             shell: bash
             workDir: /home/nocalhost-dev
             command:
@@ -60,7 +60,7 @@ spec:
     spec:
       containers:
       - name: ratings
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/ratings
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/ratings
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
