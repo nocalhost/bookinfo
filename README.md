@@ -1,18 +1,22 @@
 # README
 
-## Annotation 注入依赖
+#### Annotation 注入依赖
 
 1. helm dep build
 2. helm install bookinfo . -f values-annotation-config.yaml --namespace xx --kubeconfig xxx
 
-## ConfigMap 注入依赖
+#### ConfigMap 注入依赖
 
 1. helm dep build
 2. helm install bookinfo . -f values-full-config.yaml --namespace xx --kubeconfig xxx
 
+******
+
+## 文档说明
+
 #### 一、如何正确配置 Nocalhost `Cm config` 与 `Annotation Config`
 
-`Cm Config`  与 ``Annotation Config` 的配置规则本质上是一致的，例如，可直接将上述配置放置在指定位置。
+`Cm Config`  与 `Annotation Config` 的配置规则本质上是一致的，例如，可直接将上述配置放置在指定位置。
 
 
 
