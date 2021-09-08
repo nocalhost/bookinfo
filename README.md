@@ -18,7 +18,8 @@
 2. helm install bookinfo . -f values-full-config.yaml --namespace xx --kubeconfig xxx
 
 ### 自动创建 NS 并安装
-
+1. helm dep build
+2. 
 ```
 helm install bookinfo . -f values-annotation-config.yaml \
   --set dep.dep.match.namespace.label.key=dep-inject \
