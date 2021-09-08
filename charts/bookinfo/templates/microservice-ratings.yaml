@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: ratings
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/ratings
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/ratings
         imagePullPolicy: Always
         ports:
         - containerPort: 9080

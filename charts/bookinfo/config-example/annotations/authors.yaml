@@ -10,8 +10,8 @@
           - name: ENV_INJECT_EXAM
             value: ANNOTATIONS
       dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-authors.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-authors.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
         shell: sh
         workDir: /home/nocalhost-dev
         command:
