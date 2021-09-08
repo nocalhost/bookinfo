@@ -1,11 +1,9 @@
-- name: authors
-  serviceType: deployment
-  dependLabelSelector:
-    pods:
-      - "productpage"
-      - "details"
-  containers:
-    - install:
-        env:
-          - name: ENV_INJECT_EXAM
-            value: ANNOTATIONS
+dependLabelSelector:
+  pods:
+    - "productpage"
+    - "details"
+containers:
+  - install:
+      env:
+        - name: ENV_INJECT_EXAM
+          value: ANNOTATIONS

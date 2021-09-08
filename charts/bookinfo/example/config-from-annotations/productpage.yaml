@@ -1,12 +1,10 @@
-- name: productpage
-  serviceType: deployment
-  dependLabelSelector:
-    pods:
-      - "productpage"
-      - "details"
-  containers:
-    - name: productpage
-      install:
-        env:
-          - name: ENV_INJECT_EXAM
-            value: ANNOTATIONS
+dependLabelSelector:
+  pods:
+    - "productpage"
+    - "details"
+containers:
+  - name: productpage
+    install:
+      env:
+        - name: ENV_INJECT_EXAM
+          value: ANNOTATIONS
