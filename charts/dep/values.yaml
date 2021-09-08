@@ -1,15 +1,15 @@
 ## installer-job image
 image:
-  repository: nocalhost-docker.pkg.coding.net/fake/images/dep-installer-job
-  tag: "latest"
+  repository: nocalhost-docker.pkg.coding.net/nocalhost/public/dep-installer-job
+  tag: "dep"
 
 ## dep
 dep:
   # the namespace of dep
   namespace: nocalhost-reserved
   image:
-    repository: codingcorp-docker.pkg.coding.net/nocalhost/public/nocalhost-dep
-    tag: "8d590a86bce57ec653147cf40d908b0eae9bb77c"
+    repository: nocalhost-docker.pkg.coding.net/nocalhost/public/nocalhost-dep
+    tag: "dep"
   # match namespace method, "namespaceLabel" or "namespaceName"
   matchWith: "namespaceLabel"
   match:
