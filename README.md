@@ -2,7 +2,7 @@
 
 ### 前置条件
 
-1. Kubeconfig 需为管理员权限
+1. Kubeconfig 为管理员权限
 2. K8s 集群 >= v1.16
 
 ### 指定已存在的 Namespace 安装
