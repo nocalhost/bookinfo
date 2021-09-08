@@ -19,11 +19,12 @@
 
 ### 自动创建 NS 并安装
 
-1. helm install bookinfo . -f values-annotation-config.yaml \
+```
+helm install bookinfo . -f values-annotation-config.yaml \
   --set dep.dep.match.namespace.label.key=dep-inject \
   --set dep.dep.match.namespace.label.value=true \
   -n foo --create-namespace --kubeconfig xxx
-
+```
 
 ******
 
