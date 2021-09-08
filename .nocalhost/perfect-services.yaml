@@ -9,8 +9,8 @@
         portForward:   
           - 39080:9080
       dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-productpage.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage-with-pydevd
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-productpage.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage-with-pydevd
         shell: bash
         workDir: /root/nocalhost-dev
         storageClass: ""
@@ -48,8 +48,8 @@
   serviceType: deployment
   containers:
     - dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-details.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
         shell: bash
         workDir: /root/nocalhost-dev
         resources:
@@ -82,8 +82,8 @@
       - "dep-job"
   containers:
     - dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-ratings.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
         shell: bash
         workDir: /root/nocalhost-dev
         resources:
@@ -125,8 +125,8 @@
       - "productpage"
   containers:
     - dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-reviews.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/java:latest
         shell: bash
         workDir: /root/nocalhost-dev
         resources:
@@ -161,8 +161,8 @@
       - "authors"
   containers:
     - dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-authors.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-authors.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
         shell: sh
         workDir: /home/nocalhost-dev
         command:

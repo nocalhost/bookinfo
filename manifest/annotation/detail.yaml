@@ -22,8 +22,8 @@ metadata:
     dev.nocalhost: |
       containers:
         - dev:
-            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+            gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-details.git
+            image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
             shell: bash
             workDir: /home/nocalhost-dev
             sync: 
@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
       - name: details
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/details
         imagePullPolicy: IfNotPresent
         command: ['ruby', 'details.rb', '9080']
         ports:
@@ -66,7 +66,7 @@ spec:
             cpu: 10m
             memory: 32Mi
       - name: ubuntu
-        image: codingcorp-docker.pkg.coding.net/nocalhost/public/ubuntu:stable
+        image: nocalhost-docker.pkg.coding.net/nocalhost/public/ubuntu:stable
         imagePullPolicy: IfNotPresent
         command: ['/bin/sh', '-c', 'tail -f /dev/null']
         resources:
