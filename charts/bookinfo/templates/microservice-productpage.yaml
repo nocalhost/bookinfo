@@ -18,6 +18,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productpage
+  {{- if .Values.nocalhost.annotations.path.productpage }}
+  annotations:
+    nocalhost.dev: |-
+      {{ .Files.Get .Values.nocalhost.annotations.path.productpage | nindent 6 }}
+  {{- end }}
   labels:
     app: productpage
     app.kubernetes.io/name: productpage

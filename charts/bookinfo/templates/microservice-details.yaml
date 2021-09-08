@@ -17,6 +17,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: details
+  {{- if .Values.nocalhost.annotations.path.details }}
+  annotations:
+    nocalhost.dev: |-
+      {{ .Files.Get .Values.nocalhost.annotations.path.details | nindent 6 }}
+  {{- end }}
   labels:
     app: details
 spec:

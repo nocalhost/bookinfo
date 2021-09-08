@@ -1,5 +1,14 @@
 ServiceType: NodePort
 
+nocalhost:
+  annotations:
+    path:
+      authors: ""
+      details: ""
+      productpage: ""
+      ratings: ""
+      reviews: ""
+
 resources:
   authors:
     limits:

@@ -1,0 +1,47 @@
+- name: ratings
+  serviceType: deployment
+  dependLabelSelector:
+    pods:
+      - "productpage"
+      - "app.kubernetes.io/name=productpage"
+    jobs:
+      - "dep-job"
+  containers:
+    - dev:
+        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
+        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
+        shell: bash
+        workDir: /home/nocalhost-dev
+        command:
+          build: []
+          run:
+            - ./run.sh
+          debug:
+            - ./debug.sh
+          hotReloadRun: []
+          hotReloadDebug: []
+        debug:
+          remoteDebugPort: 9229
+        sync:
+          type: send
+          filePattern:
+            - ./
+          ignoreFilePattern:
+            - ".git"
+            - ".idea"
+            - ".github"
+            - "node_modules"
+        env:
+          - name: DEBUG
+            value: "true"
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "0.5"
+            memory: 512Mi
+      install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: ANNOTATIONS
