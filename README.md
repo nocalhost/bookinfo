@@ -9,15 +9,22 @@
 
 #### Annotation 注入依赖
 
+在 `charts/bookinfo` 目录下执行：
+
 1. helm dep build
 2. helm install bookinfo . -f values-annotation-config.yaml --namespace xx --kubeconfig xxx
 
 #### ConfigMap 注入依赖
 
+在 `charts/bookinfo` 目录下执行：
+
 1. helm dep build
 2. helm install bookinfo . -f values-full-config.yaml --namespace xx --kubeconfig xxx
 
 ### 自动创建 NS 并安装
+
+在 `charts/bookinfo` 目录下执行：
+
 1. helm dep build
 2. 
 ```
