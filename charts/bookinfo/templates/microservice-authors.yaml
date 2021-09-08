@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: authors
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/authors
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/authors
         imagePullPolicy: Always
         ports:
         - containerPort: 9080

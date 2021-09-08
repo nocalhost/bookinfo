@@ -5,8 +5,8 @@
       - "productpage"
   containers:
     - dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-reviews.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/java:latest
         shell: bash
         workDir: /home/nocalhost-dev
         command:

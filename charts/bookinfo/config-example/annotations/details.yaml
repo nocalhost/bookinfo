@@ -6,8 +6,8 @@
           - name: ENV_INJECT_EXAM
             value: ANNOTATIONS
       dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-details.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
         shell: bash
         workDir: /home/nocalhost-dev
         sync:
