@@ -13,26 +13,6 @@ application:
             env:
               - name: ENV_INJECT_EXAM
                 value: BASE
-          dev:
-            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-productpage.git
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage-with-pydevd
-            shell: bash
-            workDir: /home/nocalhost-dev
-            command:
-              run:
-                - ./run.sh
-              debug:
-                - ./debug.sh
-            debug:
-              remoteDebugPort: 9009
-            sync:
-              type: send
-              filePattern:
-                - ./
-              ignoreFilePattern:
-                - ".git"
-                - ".github"
-                - ".idea"
 
     - name: details
       serviceType: deployment
@@ -41,18 +21,6 @@ application:
             env:
               - name: ENV_INJECT_EXAM
                 value: BASE
-          dev:
-            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
-            shell: bash
-            workDir: /home/nocalhost-dev
-            sync:
-              type: send
-              filePattern:
-                - ./
-              ignoreFilePattern:
-                - ".git"
-                - ".github"
 
     - name: ratings
       serviceType: deployment
@@ -64,27 +32,6 @@ application:
             env:
               - name: ENV_INJECT_EXAM
                 value: BASE
-          dev:
-            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
-            shell: bash
-            workDir: /home/nocalhost-dev
-            command:
-              run:
-                - ./run.sh
-              debug:
-                - ./debug.sh
-            debug:
-              remoteDebugPort: 9229
-            sync:
-              type: send
-              filePattern:
-                - ./
-              ignoreFilePattern:
-                - ".git"
-                - ".idea"
-                - ".github"
-                - "node_modules"
 
     - name: reviews
       serviceType: deployment
@@ -96,26 +43,6 @@ application:
             env:
               - name: ENV_INJECT_EXAM
                 value: BASE
-          dev:
-            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
-            shell: bash
-            workDir: /home/nocalhost-dev
-            command:
-              build: [ "./gradlew", "build" ]
-              run: [ "./gradlew", "bootRun" ]
-              debug: [ "./gradlew", "bootRun", "--debug-jvm" ]
-            debug:
-              remoteDebugPort: 5005
-            sync:
-              type: send
-              filePattern:
-                - ./
-              ignoreFilePattern:
-                - ".git"
-                - ".github"
-                - ".gradle"
-                - "build"
 
     - name: authors
       serviceType: deployment
@@ -127,20 +54,3 @@ application:
             env:
               - name: ENV_INJECT_EXAM
                 value: BASE
-          dev:
-            gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-authors.git
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
-            shell: sh
-            workDir: /home/nocalhost-dev
-            command:
-              run: [ "./run.sh" ]
-              debug: [ "./debug.sh" ]
-            debug:
-              remoteDebugPort: 9009
-            sync:
-              type: send
-              filePattern:
-                - ./
-              ignoreFilePattern:
-                - ".git"
-                - ".github"
