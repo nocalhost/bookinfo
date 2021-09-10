@@ -7,7 +7,7 @@
     - name: productpage
       dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-productpage.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage
         shell: bash
         workDir: /home/nocalhost-dev
         sync: 
@@ -25,7 +25,7 @@
   containers:
     - dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-details.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
         shell: bash
         workDir: /home/nocalhost-dev
         sync: 
@@ -49,7 +49,7 @@
   containers:
     - dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-ratings.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
         shell: bash
         workDir: /home/nocalhost-dev
         command:
@@ -87,7 +87,7 @@
   containers:
     - dev:
         gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/java:latest
         shell: bash
         workDir: /home/nocalhost-dev
         command:

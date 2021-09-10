@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: ratings
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/ratings:latest
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/ratings:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080

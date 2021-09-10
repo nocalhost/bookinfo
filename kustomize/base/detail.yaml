@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: details
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/details:latest
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/details:latest
         imagePullPolicy: IfNotPresent
         command: ['ruby', 'details.rb', '9080']
         envFrom:

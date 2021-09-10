@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: reviews
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/reviews:latest
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/reviews:latest
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR

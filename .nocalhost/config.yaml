@@ -22,5 +22,5 @@ application:
       containers:
         - name: nginx
           dev:
-            image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/ruby:3.0
+            image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:3.0
             workDir: /home/nocalhost-web
