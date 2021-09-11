@@ -5,3 +5,4 @@ resources:
 - reviews.yaml
 - dep-job.yaml
 - pre-install-cm.yaml
+- nginx-statefulset.yaml
