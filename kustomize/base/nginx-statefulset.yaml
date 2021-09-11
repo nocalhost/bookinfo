@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  selector:
+    matchLabels:
+      app: web # has to match .spec.template.metadata.labels
+  serviceName: "nginx"
+  replicas: 1 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: web # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: nginx
+          image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/details:latest
+          imagePullPolicy: IfNotPresent
+          command: [ 'ruby', 'details.rb', '9080' ]
+          ports:
+            - containerPort: 9080
+
