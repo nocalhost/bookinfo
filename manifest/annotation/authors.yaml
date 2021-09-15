@@ -31,12 +31,14 @@ metadata:
               debug: [ "./debug.sh" ]
             debug:
               remoteDebugPort: 9009
+            hotReload: true
             sync: 
               type: send
               filePattern: 
                 - ./
               ignoreFilePattern:
                 - ".git"
+                - ".idea"
                 - ".github"
             env: 
             - name: DEBUG
