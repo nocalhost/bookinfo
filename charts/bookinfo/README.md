@@ -1,1 +1,0 @@
-# Simple BookInfo Helm Chart
