@@ -4,7 +4,7 @@ configProperties:
 
 application:
   name: bookinfo
-  manifestType: rawManifest
+  manifestType: rawManifestGit
   resourcePath: ["manifest/templates"]
   ignoredPath: []
   onPreInstall: 
