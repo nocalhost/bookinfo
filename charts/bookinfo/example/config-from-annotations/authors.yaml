@@ -2,6 +2,11 @@ dependLabelSelector:
   pods:
     - "productpage"
     - "details"
+  tcp:
+    - "114.114.114.114:53"
+  http:
+    - "http://www.baidu.com"
+    - "https://coding.com"
 containers:
   - install:
       env:
