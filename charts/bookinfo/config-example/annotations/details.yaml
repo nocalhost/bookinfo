@@ -1,0 +1,19 @@
+- name: details
+  serviceType: deployment
+  containers:
+    - install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: ANNOTATIONS
+      dev:
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-details.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+        shell: bash
+        workDir: /home/nocalhost-dev
+        sync:
+          type: send
+          filePattern:
+            - ./
+          ignoreFilePattern:
+            - ".git"
+            - ".github"

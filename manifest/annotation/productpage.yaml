@@ -1,4 +1,3 @@
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,22 +11,45 @@ spec:
     name: http
   selector:
     app: productpage
-  type: {{.Values.ServiceType}}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productpage
-  {{- if .Values.nocalhost.annotations.path.productpage }}
-  annotations:
-    nocalhost.dev: |-
-      {{ .Files.Get .Values.nocalhost.annotations.path.productpage | nindent 6 }}
-  {{- end }}
   labels:
     app: productpage
     app.kubernetes.io/name: productpage
+  annotations:
+    dev.nocalhost: |
+      containers:
+        - name: productpage
+          install: 
+            portForward:   
+              - 39080:9080
+          dev:
+            gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-productpage.git
+            image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage-with-pydevd
+            shell: bash
+            workDir: /home/nocalhost-dev
+            command:
+              run:
+                - ./run.sh
+              debug:
+                - ./debug.sh
+            debug:
+              remoteDebugPort: 9009
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+                - ".github"
+                - ".idea"
+            portForward:
+            - 39080:9080
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: productpage
@@ -53,10 +75,14 @@ spec:
         volumeMounts:
         - name: tmp
           mountPath: /tmp
-        {{- with .Values.resources.productpage }}
         resources:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 32Mi
       volumes:
       - name: tmp
         emptyDir: {}
+---

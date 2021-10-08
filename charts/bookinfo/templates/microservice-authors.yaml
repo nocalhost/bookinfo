@@ -1,46 +1,47 @@
----
+ ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ratings
+  name: authors
   labels:
-    app: ratings
-    service: ratings
+    app: authors
+    service: authors
 spec:
   ports:
   - port: 9080
     name: http
   selector:
-    app: ratings
+    app: authors
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ratings
-  {{- if .Values.nocalhost.annotations.path.ratings }}
+  name: authors
+  {{- if .Values.nocalhost.annotations.path.authors }}
   annotations:
-    nocalhost.dev: |-
-      {{ .Files.Get .Values.nocalhost.annotations.path.ratings | nindent 6 }}
+    dev.nocalhost: |-
+      {{ .Files.Get .Values.nocalhost.annotations.path.authors | nindent 6 }}
   {{- end }}
   labels:
-    app: ratings
+    app: authors
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ratings
+      app: authors
   template:
     metadata:
       labels:
-        app: ratings
+        app: authors
     spec:
       containers:
-      - name: ratings
-        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/ratings
+      - name: authors
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/authors
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
-        {{- with .Values.resources.ratings }}
+        {{- with .Values.resources.authors }}
         resources:
           {{- toYaml . | nindent 10 }}
         {{- end }}
+

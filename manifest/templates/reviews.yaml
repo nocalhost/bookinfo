@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: reviews
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/reviews:latest
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/reviews:latest
         imagePullPolicy: Always
         env:
         - name: LOG_DIR
@@ -47,6 +47,13 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        resources:
+          limits:
+            cpu: 1
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 32Mi
       volumes:
       - name: wlp-output
         emptyDir: {}

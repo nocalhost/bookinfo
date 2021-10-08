@@ -1,41 +1,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: details
+  name: authors
   labels:
-    app: details
-    service: details
+    app: authors
+    service: authors
 spec:
   ports:
   - port: 9080
     name: http
   selector:
-    app: details
+    app: authors
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: details
+  name: authors
   labels:
-    app: details
+    app: authors
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: details
+      app: authors
   template:
     metadata:
       labels:
-        app: details
+        app: authors
     spec:
       containers:
-      - name: details
-        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/details
-        imagePullPolicy: IfNotPresent
-        command: ['ruby', 'details.rb', '9080']
-        envFrom:
-        - configMapRef:
-            name: bookinfo-pre-install-config
+      - name: authors
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/authors:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 9080
         readinessProbe:
@@ -45,8 +41,8 @@ spec:
           periodSeconds: 10
         resources:
           limits:
-            cpu: 100m
-            memory: 256Mi
+            cpu: 50m
+            memory: 128Mi
           requests:
             cpu: 10m
             memory: 32Mi

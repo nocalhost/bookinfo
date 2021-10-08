@@ -1,8 +1,8 @@
-ServiceType: NodePort
+ServiceType: ClusterIP
 
 nocalhost:
   config:
-    path: ""
+    path: "config-example/cm/nocalhost-config.yaml"
 
   annotations:
     path:

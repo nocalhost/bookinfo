@@ -18,6 +18,29 @@ metadata:
   name: reviews
   labels:
     app: reviews
+  annotations:
+    dev.nocalhost: |
+      containers:
+        - dev:
+            gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-reviews.git
+            image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/java:latest
+            shell: bash
+            workDir: /home/nocalhost-dev
+            command:
+              build: [ "./gradlew", "build" ]
+              run: [ "./gradlew", "bootRun" ]
+              debug: [ "./gradlew", "bootRun", "--debug-jvm" ]
+            debug:
+              remoteDebugPort: 5005
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+                - ".github"
+                - ".gradle"
+                - "build"
 spec:
   replicas: 1
   selector:

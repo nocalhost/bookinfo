@@ -1,0 +1,30 @@
+- name: authors
+  serviceType: deployment
+  dependLabelSelector:
+    pods:
+      - "productpage"
+      - "details"
+  containers:
+    - install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: ANNOTATIONS
+      dev:
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-authors.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
+        shell: sh
+        workDir: /home/nocalhost-dev
+        command:
+          run: [ "./run.sh" ]
+          debug: [ "./debug.sh" ]
+        debug:
+          remoteDebugPort: 9009
+        hotReload: true
+        sync:
+          type: send
+          filePattern:
+            - ./
+          ignoreFilePattern:
+            - ".git"
+            - ".idea"
+            - ".github"

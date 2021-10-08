@@ -18,6 +18,24 @@ metadata:
   name: details
   labels:
     app: details
+  annotations:
+    dev.nocalhost: |
+      containers:
+        - dev:
+            gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-details.git
+            image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+            shell: bash
+            workDir: /home/nocalhost-dev
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+                - ".github"
+            env: 
+            - name: DEBUG
+              value: "true"
 spec:
   replicas: 1
   selector:
@@ -47,7 +65,7 @@ spec:
           requests:
             cpu: 10m
             memory: 32Mi
-      - name: sidecar
+      - name: ubuntu
         image: nocalhost-docker.pkg.coding.net/nocalhost/public/ubuntu:stable
         imagePullPolicy: IfNotPresent
         command: ['/bin/sh', '-c', 'tail -f /dev/null']

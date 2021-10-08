@@ -33,8 +33,8 @@ spec:
     spec:
       containers:
       - name: productpage
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/productpage
-        imagePullPolicy: IfNotPresent
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/productpage
+        imagePullPolicy: Always
         command: ['python', 'productpage.py', '9080']
         ports:
         - containerPort: 9080
@@ -46,6 +46,13 @@ spec:
         volumeMounts:
         - name: tmp
           mountPath: /tmp
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 32Mi
       volumes:
       - name: tmp
         emptyDir: {}

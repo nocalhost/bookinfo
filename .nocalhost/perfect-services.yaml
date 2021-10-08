@@ -5,11 +5,25 @@
       - "dep-job"
   containers:
     - name: productpage
+      install: 
+        portForward:   
+          - 39080:9080
       dev:
         gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-productpage.git
         image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage-with-pydevd
         shell: bash
-        workDir: /home/nocalhost-dev
+        workDir: /root/nocalhost-dev
+        storageClass: ""
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: "0.5"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        persistentVolumeDirs:
+          - path: /root
+            capacity: 10Gi
         command:
           run:
             - ./run.sh
@@ -27,13 +41,9 @@
             - ".idea"
         portForward:
         - 39080:9080
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi
+        env: 
+        - name: DEBUG
+          value: "true"
 - name: details
   serviceType: deployment
   containers:
@@ -41,7 +51,17 @@
         gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-details.git
         image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
         shell: bash
-        workDir: /home/nocalhost-dev
+        workDir: /root/nocalhost-dev
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: "0.5"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        persistentVolumeDirs:
+          - path: /root
+            capacity: 10Gi
         sync: 
           type: send
           filePattern: 
@@ -65,7 +85,17 @@
         gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-ratings.git
         image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
         shell: bash
-        workDir: /home/nocalhost-dev
+        workDir: /root/nocalhost-dev
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: "0.5"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        persistentVolumeDirs:
+          - path: /root
+            capacity: 10Gi
         command:
           build: []
           run:
@@ -88,13 +118,6 @@
         env: 
         - name: DEBUG
           value: "true"
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi
 - name: reviews
   serviceType: deployment
   dependLabelSelector: 
@@ -105,7 +128,17 @@
         gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-reviews.git
         image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/java:latest
         shell: bash
-        workDir: /home/nocalhost-dev
+        workDir: /root/nocalhost-dev
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: "0.5"
+          requests:
+            memory: "100Mi"
+            cpu: "0.1"
+        persistentVolumeDirs:
+          - path: /root
+            capacity: 10Gi
         command:
           build: [ "./gradlew", "build" ]
           run: [ "./gradlew", "bootRun" ]
@@ -121,38 +154,11 @@
             - ".github"
             - ".gradle"
             - "build"
-- name: fluentd-elasticsearch
-  serviceType: daemonset
-  containers:
-    - dev:
-        gitUrl: https://e.coding.net/codingcorp/nocalhost/bookinfo-reviews.git
-        image: codingcorp-docker.pkg.coding.net/nocalhost/dev-images/java:latest
-        shell: bash
-        workDir: /home/nocalhost-dev
-        command:
-          build: [ "./gradlew", "build" ]
-          run: [ "./gradlew", "bootRun" ]
-          debug: [ "./gradlew", "bootRun", "--debug-jvm" ]
-        debug:
-          remoteDebugPort: 5005
-        sync: 
-          type: send
-          filePattern: 
-            - ./
-          ignoreFilePattern:
-            - ".git"
-            - ".github"
-            - ".gradle"
-            - "build"            
-        resources:
-          limits:
-            cpu: "2"
-            memory: 2Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi
 - name: authors
   serviceType: deployment
+  dependLabelSelector:
+    pods:
+      - "authors"
   containers:
     - dev:
         gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-authors.git
@@ -173,10 +179,3 @@
             - ".git"
             - ".idea"
             - ".github"
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1Gi
-          requests:
-            cpu: "0.5"
-            memory: 512Mi

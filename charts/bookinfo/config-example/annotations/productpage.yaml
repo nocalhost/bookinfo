@@ -1,0 +1,32 @@
+- name: productpage
+  serviceType: deployment
+  dependLabelSelector:
+    pods:
+      - "productpage"
+      - "details"
+  containers:
+    - name: productpage
+      install:
+        env:
+          - name: ENV_INJECT_EXAM
+            value: ANNOTATIONS
+      dev:
+        gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-productpage.git
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/python:3.7.7-slim-productpage-with-pydevd
+        shell: bash
+        workDir: /home/nocalhost-dev
+        command:
+          run:
+            - ./run.sh
+          debug:
+            - ./debug.sh
+        debug:
+          remoteDebugPort: 9009
+        sync:
+          type: send
+          filePattern:
+            - ./
+          ignoreFilePattern:
+            - ".git"
+            - ".github"
+            - ".idea"

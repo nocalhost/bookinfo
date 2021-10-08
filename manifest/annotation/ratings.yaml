@@ -18,6 +18,36 @@ metadata:
   name: ratings
   labels:
     app: ratings
+  annotations:
+    dev.nocalhost: |
+      containers:
+        - dev:
+            gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-ratings.git
+            image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/node:12.18.1-slim
+            shell: bash
+            workDir: /home/nocalhost-dev
+            command:
+              build: []
+              run:
+                - ./run.sh
+              debug:
+                - ./debug.sh
+              hotReloadRun: []
+              hotReloadDebug: []
+            debug:
+              remoteDebugPort: 9229
+            sync: 
+              type: send
+              filePattern: 
+                - ./
+              ignoreFilePattern:
+                - ".git"
+                - ".idea"
+                - ".github"
+                - "node_modules"
+            env: 
+            - name: DEBUG
+              value: "true"
 spec:
   replicas: 1
   selector:

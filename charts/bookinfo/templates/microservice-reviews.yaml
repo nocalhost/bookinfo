@@ -17,6 +17,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reviews
+  {{- if .Values.nocalhost.annotations.path.reviews }}
+  annotations:
+    nocalhost.dev: |-
+      {{ .Files.Get .Values.nocalhost.annotations.path.reviews | nindent 6 }}
+  {{- end }}
   labels:
     app: reviews
 spec:
@@ -31,17 +36,15 @@ spec:
     spec:
       containers:
       - name: reviews
-        image: codingcorp-docker.pkg.coding.net/nocalhost/bookinfo/reviews
+        image: nocalhost-docker.pkg.coding.net/nocalhost/bookinfo/reviews
         env:
         - name: server.port
           value: "9080"
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
+        {{- with .Values.resources.reviews }}
+        resources:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 9080
-          failureThreshold: 1
-          periodSeconds: 10
