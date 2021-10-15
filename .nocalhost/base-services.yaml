@@ -72,8 +72,10 @@
         command:
           build: []
           run:
+            - sh
             - ./run.sh
           debug:
+            - sh
             - ./debug.sh
           hotReloadRun: []
           hotReloadDebug: []
