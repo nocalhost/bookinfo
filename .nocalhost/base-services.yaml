@@ -139,7 +139,7 @@
     - dev:
         gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-authors.git
         image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/golang:latest
-        shell: sh
+        shell: bash
         workDir: /home/nocalhost-dev
         command:
           run: [ "./run.sh" ]
