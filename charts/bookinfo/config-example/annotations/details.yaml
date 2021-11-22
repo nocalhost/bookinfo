@@ -7,7 +7,7 @@
             value: ANNOTATIONS
       dev:
         gitUrl: https://e.coding.net/nocalhost/nocalhost/bookinfo-details.git
-        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7.1-slim
+        image: nocalhost-docker.pkg.coding.net/nocalhost/dev-images/ruby:2.7-buster
         shell: bash
         workDir: /home/nocalhost-dev
         sync:
@@ -17,3 +17,10 @@
           ignoreFilePattern:
             - ".git"
             - ".github"
+        command:
+          run:
+            - ./run.sh
+          debug:
+            - ./debug.sh
+        debug:
+          remoteDebugPort: 9001
